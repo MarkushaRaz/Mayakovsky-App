@@ -1,0 +1,27 @@
+name: Build App
+
+on:
+  push:
+
+jobs:
+  Build:
+    runs-on: windows-latest
+    steps:
+      - name: Run
+        uses: actions/checkout@v3
+
+      - name: Download MinGW
+        run: |
+          choco install mingw -y
+          echo "C:\ProgramData\chocolatey\bin" >> $GITHUB_PATH
+      
+      - name: Build C++
+        run: |
+          g++ main.cpp -o Mayakovsky.exe -static -municode
+          ls -lah
+
+      - name: Push
+        uses: actions/upload-artifact@v3
+        with:
+          name: Mayakovsky
+          path: Mayakovsky.exe
