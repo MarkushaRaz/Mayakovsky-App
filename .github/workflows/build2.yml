@@ -14,19 +14,19 @@ jobs:
       - name: 📥 Клонируем репозиторий
         uses: actions/checkout@v3
 
-      - name: 🔧 Скачиваем и настраиваем 32-битный MinGW
+      - name: 🔧 Устанавливаем Scoop и 32-битный MinGW
         run: |
-          Invoke-WebRequest -Uri "https://downloads.sourceforge.net/mingw-w64/i686-12.2.0-release-win32-sjlj.zip" -OutFile "mingw32.zip"
-          Expand-Archive mingw32.zip -DestinationPath "C:\mingw32"
-          echo "C:\mingw32\mingw32\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8
+          irm get.scoop.sh | iex
+          scoop install mingw
+          echo "C:\Users\runneradmin\scoop\shims" >> $GITHUB_PATH
 
       - name: 🔍 Проверяем установленный компилятор
         run: |
-          i686-w64-mingw32-g++ --version
+          gcc --version
 
       - name: 🛠️ Компилируем 32-битный EXE
         run: |
-          i686-w64-mingw32-g++ build/main.cpp -o Mayakovsky-32.exe -static -mconsole
+          gcc build/main.cpp -o Mayakovsky-32.exe -static -mconsole -m32
           ls -lah
 
       - name: 📤 Загружаем 32-битный EXE
