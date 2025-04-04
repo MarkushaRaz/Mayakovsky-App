@@ -21,7 +21,7 @@ jobs:
           ls -lah
 
       - name: Push
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Mayakovsky
           path: Mayakovsky.exe
