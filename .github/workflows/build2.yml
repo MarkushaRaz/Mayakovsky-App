@@ -27,7 +27,6 @@ jobs:
       - name: 🛠️ Компилируем 32-битный EXE
         run: |
           gcc build/main.cpp -o Mayakovsky-32.exe -static -mconsole -m32
-          ls -lah
 
       - name: 📤 Загружаем 32-битный EXE
         uses: actions/upload-artifact@v4
