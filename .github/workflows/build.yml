@@ -12,12 +12,12 @@ jobs:
 
       - name: Download MinGW
         run: |
-          choco install mingw --x86 -y
+          choco install mingw --forcex86 -y
           echo "C:\ProgramData\chocolatey\bin" >> $GITHUB_PATH
       
       - name: Build C++
         run: |
-          i686-w64-mingw32-g++ build/main.cpp -o Mayakovsky.exe -static -mconsole
+          i686-w64-mingw32-g++ build/main.cpp -o Mayakovsky.exe -static -mconsole -m32
 
       - name: Push
         uses: actions/upload-artifact@v4
