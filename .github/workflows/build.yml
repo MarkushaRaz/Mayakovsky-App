@@ -17,7 +17,7 @@ jobs:
       
       - name: Build C++
         run: |
-          i686-w64-mingw32-g++ build/main.cpp -o Mayakovsky.exe -static -mconsole -m32
+          g++ build/main.cpp -o Mayakovsky.exe -static -mconsole -m32
 
       - name: Push
         uses: actions/upload-artifact@v4
