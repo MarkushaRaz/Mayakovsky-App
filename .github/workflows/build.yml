@@ -12,7 +12,7 @@ jobs:
 
       - name: Download MinGW
         run: |
-          choco install mingw -y
+          choco install mingw --x86 -y
           echo "C:\ProgramData\chocolatey\bin" >> $GITHUB_PATH
       
       - name: Build C++
